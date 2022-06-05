@@ -9,24 +9,136 @@
     tools:context=".GameFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/conLayoutField"
+        android:id="@+id/gameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/field0_0"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/field0_1"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field0_0"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/field0_2"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field0_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/field1_0"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/field0_0" />
+
+        <ImageView
+            android:id="@+id/field1_1"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field1_0"
+            app:layout_constraintTop_toBottomOf="@+id/field0_1" />
+
+        <ImageView
+            android:id="@+id/field1_2"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field1_1"
+            app:layout_constraintTop_toBottomOf="@+id/field0_2" />
+
+        <ImageView
+            android:id="@+id/field2_0"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/field1_0" />
+
+        <ImageView
+            android:id="@+id/field2_1"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field2_0"
+            app:layout_constraintTop_toBottomOf="@+id/field1_1" />
+
+        <ImageView
+            android:id="@+id/field2_2"
+            android:layout_width="@dimen/dimPictures"
+            android:layout_height="@dimen/dimPictures"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/empty_field"
+            android:tag="empty"
+            app:layout_constraintStart_toEndOf="@+id/field2_1"
+            app:layout_constraintTop_toBottomOf="@+id/field1_2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Derzeitiger Spieler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameField" />
+
+    <ImageView
+        android:id="@+id/imgCurrentPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
+        android:src="@drawable/x_field"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/empty_field"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/conLayoutField" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

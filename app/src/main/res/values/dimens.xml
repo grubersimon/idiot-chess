@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dimPictures">100</dimen>
+    <dimen name="dimPictures">100dp</dimen>
 </resources>
