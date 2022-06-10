@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.navigation.findNavController
-import com.example.idiot_chess.databinding.ActivityMainBinding.inflate
 
 class GameFragment : Fragment(R.layout.fragment_game) {
 
@@ -23,7 +22,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
         var currentPlayer = 0
         var sumMoves = 0
-
+        var winInLastMove = false
 
         val field0_0 = view.findViewById<Button>(R.id.field0_0) as ImageView
         val field0_1 = view.findViewById<Button>(R.id.field0_1) as ImageView
@@ -36,7 +35,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         val field2_2 = view.findViewById<Button>(R.id.field2_2) as ImageView
         val curPlayer = view.findViewById<Button>(R.id.imgCurrentPlayer) as ImageView
 
-        fun shareRes(x: ImageView)
+        fun SendResToResultFragment(x: ImageView)
         {
 
             if(x.getTag() == "x")
@@ -53,18 +52,21 @@ class GameFragment : Fragment(R.layout.fragment_game) {
                 view.findNavController()
                     .navigate(action)
             }
+
+            if(sumMoves == 9) {winInLastMove = true}
+
         }
 
-        fun whoIsWinner (player: String)
+        fun IdentifyWinner (player: String)
         {
-            if (field0_0.getTag() == player && field0_1.getTag() == player && field0_2.getTag() == player)         {shareRes(field0_0)}
-            else if (field1_0.getTag() == player && field1_1.getTag() == player && field1_2.getTag() == player)    {shareRes(field0_1)}
-            else if (field2_0.getTag() == player && field2_1.getTag() == player && field2_2.getTag() == player)    {shareRes(field2_0)}
-            else if (field0_0.getTag() == player && field1_0.getTag() == player && field2_0.getTag() == player)    {shareRes(field0_0)}
-            else if (field0_1.getTag() == player && field1_1.getTag() == player && field2_1.getTag() == player)    {shareRes(field1_1)}
-            else if (field0_2.getTag() == player && field1_2.getTag() == player && field2_2.getTag() == player)    {shareRes(field0_2)}
-            else if (field0_0.getTag() == player && field1_1.getTag() == player && field2_2.getTag() == player)    {shareRes(field0_0)}
-            else if (field0_2.getTag() == player && field1_1.getTag() == player && field2_0.getTag() == player)    {shareRes(field0_2)}
+                 if (field0_0.getTag() == player && field0_1.getTag() == player && field0_2.getTag() == player)    {SendResToResultFragment(field0_0)}
+            else if (field1_0.getTag() == player && field1_1.getTag() == player && field1_2.getTag() == player)    {SendResToResultFragment(field0_1)}
+            else if (field2_0.getTag() == player && field2_1.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field2_0)}
+            else if (field0_0.getTag() == player && field1_0.getTag() == player && field2_0.getTag() == player)    {SendResToResultFragment(field0_0)}
+            else if (field0_1.getTag() == player && field1_1.getTag() == player && field2_1.getTag() == player)    {SendResToResultFragment(field1_1)}
+            else if (field0_2.getTag() == player && field1_2.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field0_2)}
+            else if (field0_0.getTag() == player && field1_1.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field0_0)}
+            else if (field0_2.getTag() == player && field1_1.getTag() == player && field2_0.getTag() == player)    {SendResToResultFragment(field0_2)}
         }
 
         fun game(x: ImageView)
@@ -88,11 +90,12 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
             if (sumMoves > 4)
             {
-                whoIsWinner("x")
-                whoIsWinner("o")
+                IdentifyWinner("x")
+                IdentifyWinner("o")
             }
 
-            if(sumMoves == 9)
+            // winInLastMove ... da sonst bei Sieg beim letzen Zug zweimal Navigation aufgerufen wird ... Crash
+            if(sumMoves == 9 && winInLastMove == false)
             {
                 val action = GameFragmentDirections
                     .actionGameToResultFragment(0)
