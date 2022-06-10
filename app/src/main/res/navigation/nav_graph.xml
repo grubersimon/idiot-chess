@@ -31,5 +31,8 @@
         <action
             android:id="@+id/action_resultToGameFragment"
             app:destination="@id/gameFragment" />
+        <argument
+            android:name="winnerInput"
+            app:argType="integer" />
     </fragment>
 </navigation>

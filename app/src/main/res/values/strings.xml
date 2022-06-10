@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcomeMsg">"Das Kultspiel für zwei Personen nun auch auf Android. Es setzen zwei Spieler abwechselnd Spielsteine. Der Spieler, der als erstes Drei Steine in einer Reihe hat, gewinnt. Als Reihenfolge zählen drei Steine nacheinander, egal ob vertikal, horizontal oder diagonal. "</string>
     <string name="btnStartGame">Neue Runde starten</string>
+
+    <string name="undecided">Unentschieden, niemand hat gewonnen</string>
+    <string name="x_won">Spieler X hat gewonnen</string>
+    <string name="o_won">Spieler O hat gewonnen</string>
+
+
 </resources>
