@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.navigation.findNavController
+import com.example.idiot_chess.databinding.ActivityMainBinding
 
 class GameFragment : Fragment(R.layout.fragment_game) {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreateView
     (
@@ -18,8 +20,11 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         savedInstanceState: Bundle?
     ): View?
     {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val view = inflater.inflate(R.layout.fragment_game, container, false)
+        //val view = inflater.inflate(R.layout.fragment_game, container, false)
+
         var currentPlayer = 0
         var sumMoves = 0
         var winInLastMove = false
@@ -38,14 +43,14 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         fun SendResToResultFragment(x: ImageView)
         {
 
-            if(x.getTag() == "x")
+            if(x.tag == "x")
             {
                 val action = GameFragmentDirections
                     .actionGameToResultFragment(1)
                 view.findNavController()
                     .navigate(action)
             }
-            else if (x.getTag() == "o")
+            else if (x.tag == "o")
             {
                 val action = GameFragmentDirections
                     .actionGameToResultFragment(2)
@@ -59,33 +64,33 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         fun IdentifyWinner (player: String)
         {
-                 if (field0_0.getTag() == player && field0_1.getTag() == player && field0_2.getTag() == player)    {SendResToResultFragment(field0_0)}
-            else if (field1_0.getTag() == player && field1_1.getTag() == player && field1_2.getTag() == player)    {SendResToResultFragment(field0_1)}
-            else if (field2_0.getTag() == player && field2_1.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field2_0)}
-            else if (field0_0.getTag() == player && field1_0.getTag() == player && field2_0.getTag() == player)    {SendResToResultFragment(field0_0)}
-            else if (field0_1.getTag() == player && field1_1.getTag() == player && field2_1.getTag() == player)    {SendResToResultFragment(field1_1)}
-            else if (field0_2.getTag() == player && field1_2.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field0_2)}
-            else if (field0_0.getTag() == player && field1_1.getTag() == player && field2_2.getTag() == player)    {SendResToResultFragment(field0_0)}
-            else if (field0_2.getTag() == player && field1_1.getTag() == player && field2_0.getTag() == player)    {SendResToResultFragment(field0_2)}
+                 if (field0_0.tag == player && field0_1.tag == player && field0_2.tag == player)    {SendResToResultFragment(field0_0)}
+            else if (field1_0.tag == player && field1_1.tag == player && field1_2.tag == player)    {SendResToResultFragment(field0_1)}
+            else if (field2_0.tag == player && field2_1.tag == player && field2_2.tag == player)    {SendResToResultFragment(field2_0)}
+            else if (field0_0.tag == player && field1_0.tag == player && field2_0.tag == player)    {SendResToResultFragment(field0_0)}
+            else if (field0_1.tag == player && field1_1.tag == player && field2_1.tag == player)    {SendResToResultFragment(field1_1)}
+            else if (field0_2.tag == player && field1_2.tag == player && field2_2.tag == player)    {SendResToResultFragment(field0_2)}
+            else if (field0_0.tag == player && field1_1.tag == player && field2_2.tag == player)    {SendResToResultFragment(field0_0)}
+            else if (field0_2.tag == player && field1_1.tag == player && field2_0.tag == player)    {SendResToResultFragment(field0_2)}
         }
 
         fun game(x: ImageView)
         {
-            if(currentPlayer == 0  && x.getTag() == "empty")
+            if(currentPlayer == 0  && x.tag == "empty")
             {
                 x.setImageResource(R.drawable.x_field)
                 curPlayer.setImageResource(R.drawable.o_field)
                 currentPlayer = 1
                 sumMoves = sumMoves + 1
-                x.setTag("x")
+                x.tag = "x"
             }
-            else if(x.getTag() == "empty")
+            else if(x.tag == "empty")
             {
                 x.setImageResource(R.drawable.o_field)
                 curPlayer.setImageResource(R.drawable.x_field)
                 currentPlayer = 0
                 sumMoves = sumMoves + 1
-                x.setTag("o")
+                x.tag = "o"
             }
 
             if (sumMoves > 4)
